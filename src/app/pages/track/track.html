@@ -1,0 +1,79 @@
+<div class="container">
+    <app-header />
+
+    <main class="track-content">
+        <section class="track-card track-search">
+            <div class="track-title">Отследить посылку</div>
+            <div class="track-action">
+                <div class="main-field track-field">
+                    <input id="trackNumber" [(ngModel)]="trackNumber" placeholder="Введите номер посылки"
+                        autocomplete="off" />
+                </div>
+                <button id="trackButton" class="button track-button" type="button"
+                    (click)="trackShipment()">Отследить</button>
+            </div>
+        </section>
+
+        <section class="track-card track-result" id="trackResult" [class.is-visible]="trackResult()">
+            <div class="track-result-header">
+                <div class="track-id" id="trackIdValue">—</div>
+                <div class="track-routes">
+                    <div class="track-route">
+                        <div class="track-route-pin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="track-route-text">
+                            <div class="track-route-city" id="trackFromValue">Откуда: {{trackResult()?.route.from}}
+                            </div>
+                            <div class="track-route-address">Откуда</div>
+                        </div>
+                    </div>
+                    <div class="track-route-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                    <div class="track-route">
+                        <div class="track-route-pin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="track-route-text">
+                            <div class="track-route-city" id="trackToValue">Куда: {{trackResult()?.route.to}}</div>
+                            <div class="track-route-address">Куда</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="track-info">
+                <div class="track-status">
+                    <div class="track-status-title">Текущий статус</div>
+                    <div class="track-status-list" id="trackStatusList">
+                        @for (status of trackResult()?.statuses; track status.type + status.date) {
+                        <div class="track-status" [class]="status.type">
+                            <img class="track-status-icon" [src]="'images/icons/' + status.type + '.svg'"
+                                [alt]="status.label" />
+                            <div class="track-status-text">
+                                <div class="track-status-text-state">{{ status.label }}</div>
+                                <div class="track-status-text-date">{{ status.date }}</div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

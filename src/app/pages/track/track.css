@@ -1,0 +1,269 @@
+/* --- Контейнер страницы --- */
+.container {
+    background: #F4F4F4 url("../../../../public/images/order-bg.png") no-repeat top center;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 120px 0 60px 0; /* Отступ сверху для хедера */
+}
+
+/* --- Контентная часть --- */
+.track-content {
+    width: 100%;
+    max-width: 600px; /* Ограничиваем ширину для читаемости */
+    margin: 0 auto;
+}
+
+/* --- Карточки --- */
+.track-card {
+    margin: 20px 0;
+    border-radius: 18px;
+    box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* --- Заголовок карточки --- */
+.track-title {
+    font-size: 20px;
+    line-height: 100%;
+    font-weight: bold;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+/* --- Блок поиска --- */
+.track-action {
+    padding: 20px;
+}
+
+.track-field {
+    margin-bottom: 10px;
+}
+
+/* Стили для поля ввода, если они не подтянулись из base.css */
+.track-field input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #E8E8E7;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    background: #FFFFFF;
+    transition: border-color 0.2s;
+}
+
+.track-field input:focus {
+    border-color: #B7B196;
+}
+
+.track-button {
+    width: 100%;
+    height: 50px;
+    font-size: 14px;
+}
+
+/* --- Блок результатов --- */
+.track-result {
+    display: none; /* Скрыт по умолчанию */
+}
+
+.track-result.is-visible {
+    display: block; /* Показывается при добавлении класса */
+}
+
+/* Шапка результата */
+.track-result-header {
+    font-weight: bold;
+    font-size: 14px;
+    color: #111111;
+    padding: 20px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.track-id {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+/* Маршрут */
+.track-routes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: normal;
+}
+
+.track-route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.track-route-pin {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: #7C7C7C;
+}
+
+.track-route-pin svg {
+    width: 100%;
+    height: 100%;
+}
+
+.track-route-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-route-city {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.track-route-address {
+    font-size: 12px;
+    color: #7C7C7C;
+}
+
+.track-route-arrow {
+    display: flex;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #B7B196;
+    margin-left: 0; /* Выравнивание по левому краю, как на скрине */
+}
+
+.track-route-arrow svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Информация о статусе */
+.track-info {
+    padding: 20px;
+}
+
+.track-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    gap: 10px;
+}
+
+.track-status-title {
+    font-size: 14px;
+    color: #111111;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.track-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.track-status-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+/* Линия, соединяющая статусы */
+.track-status-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px; /* Центр иконки (40px / 2) - 1px */
+    top: 40px;
+    bottom: -15px;
+    width: 2px;
+    background-color: #EEEEEE;
+    z-index: 1;
+}
+
+/* Иконки статусов */
+.track-status-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(17, 17, 17, 0.1);
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    z-index: 2;
+    position: relative;
+}
+
+.track-status-icon.created { background-color: #10B981; }
+.track-status-icon.in-way { background-color: #F59E0B; }
+.track-status-icon.ready { background-color: #3B82F6; }
+.track-status-icon.done { background-color: #6366F1; }
+
+/* Внутренний круг иконки */
+.track-status-icon::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+.track-status-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #111111;
+    font-size: 12px;
+    flex: 1;
+}
+
+.track-status-name {
+    font-weight: bold;
+}
+
+.track-status-date {
+    color: rgba(17, 17, 17, 0.5);
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 100px 15px 40px 15px; /* Уменьшаем отступы на мобильных */
+    }
+
+    .track-content {
+        width: 100%;
+    }
+
+    .track-title {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .track-action {
+        padding: 15px;
+    }
+
+    .track-result-header {
+        padding: 15px;
+    }
+
+    .track-info {
+        padding: 15px;
+    }
+
+    .track-status-item:not(:last-child)::after {
+        left: 19px;
+        top: 40px;
+        bottom: -15px;
+    }
+}
