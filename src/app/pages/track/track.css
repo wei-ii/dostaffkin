@@ -1,15 +1,15 @@
 /* --- Контейнер страницы --- */
 .container {
-    background: #F4F4F4 url("../../../../public/images/order-bg.png") no-repeat top center;
+    background: #F4F4F4 url("../../../../public/images/track-bg.png") no-repeat top center;
     background-size: cover;
     min-height: 100vh;
-    padding: 120px 0 60px 0; /* Отступ сверху для хедера */
+    padding: 120px 0 60px 0;
 }
 
 /* --- Контентная часть --- */
 .track-content {
     width: 100%;
-    max-width: 600px; /* Ограничиваем ширину для читаемости */
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -42,7 +42,6 @@
     margin-bottom: 10px;
 }
 
-/* Стили для поля ввода, если они не подтянулись из base.css */
 .track-field input {
     width: 100%;
     padding: 12px 15px;
@@ -67,46 +66,46 @@
 
 /* --- Блок результатов --- */
 .track-result {
-    display: none; /* Скрыт по умолчанию */
+    display: none;
 }
 
 .track-result.is-visible {
-    display: block; /* Показывается при добавлении класса */
+    display: block;
 }
 
 /* Шапка результата */
 .track-result-header {
-    font-weight: bold;
-    font-size: 14px;
-    color: #111111;
     padding: 20px;
     border-bottom: 1px solid #EEEEEE;
 }
 
 .track-id {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     font-size: 20px;
+    font-weight: 700;
+    color: #111111;
+    font-family: inherit;
 }
 
 /* Маршрут */
 .track-routes {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-weight: normal;
+    gap: 14px;
 }
 
 .track-route {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 12px;
 }
 
+/* Иконки адресов — встроенные SVG */
 .track-route-pin {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
-    color: #7C7C7C;
+    margin-top: 2px;
 }
 
 .track-route-pin svg {
@@ -114,29 +113,43 @@
     height: 100%;
 }
 
+/* Цвет пина «Откуда» — жёлтый */
+.pin-from {
+    color: #E5B800;
+}
+
+/* Цвет пина «Куда» — зелёный */
+.pin-to {
+    color: #2ECC71;
+}
+
 .track-route-text {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
 .track-route-city {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 600;
     color: #111111;
+    line-height: 1.3;
+    font-family: inherit;
 }
 
 .track-route-address {
     font-size: 12px;
-    color: #7C7C7C;
+    color: #999999;
+    line-height: 1.3;
+    font-family: inherit;
 }
 
 .track-route-arrow {
     display: flex;
-    justify-content: center;
     width: 24px;
     height: 24px;
     color: #B7B196;
-    margin-left: 0; /* Выравнивание по левому краю, как на скрине */
+    margin-left: 4px;
 }
 
 .track-route-arrow svg {
@@ -144,100 +157,97 @@
     height: 100%;
 }
 
-/* Информация о статусе */
+/* --- Статусы --- */
 .track-info {
     padding: 20px;
 }
 
-.track-status {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 12px;
-    gap: 10px;
-}
-
 .track-status-title {
     font-size: 14px;
+    font-weight: 600;
     color: #111111;
     margin-bottom: 20px;
-    width: 100%;
-    text-align: left;
+    font-family: inherit;
 }
 
 .track-status-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 100%;
+    gap: 16px;
+    position: relative;
 }
 
 .track-status-item {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
     position: relative;
+    font-family: inherit;
 }
 
-/* Линия, соединяющая статусы */
-.track-status-item:not(:last-child)::after {
+/* Вертикальная линия между иконками */
+.track-status-item:not(:last-child)::before {
     content: '';
     position: absolute;
-    left: 19px; /* Центр иконки (40px / 2) - 1px */
-    top: 40px;
-    bottom: -15px;
+    left: 19px;
+    top: 42px;
+    bottom: -16px;
     width: 2px;
     background-color: #EEEEEE;
     z-index: 1;
 }
 
-/* Иконки статусов */
+/* Иконка статуса — просто цветной круг без обводки */
 .track-status-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(17, 17, 17, 0.1);
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
-    z-index: 2;
-    position: relative;
-}
-
-.track-status-icon.created { background-color: #10B981; }
-.track-status-icon.in-way { background-color: #F59E0B; }
-.track-status-icon.ready { background-color: #3B82F6; }
-.track-status-icon.done { background-color: #6366F1; }
-
-/* Внутренний круг иконки */
-.track-status-icon::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #FFFFFF;
-}
-
-.track-status-text {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: #111111;
-    font-size: 12px;
-    flex: 1;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+    background-color: #EEEEEE;
 }
 
+.track-status-icon img,
+.track-status-icon svg {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* Цвета кружков по порядку */
+.track-status-item:nth-child(1) .track-status-icon { background-color: #E5B800; }
+.track-status-item:nth-child(2) .track-status-icon { background-color: #E67E22; }
+.track-status-item:nth-child(3) .track-status-icon { background-color: #E67E22; }
+.track-status-item:nth-child(4) .track-status-icon { background-color: #8B4513; }
+.track-status-item:nth-child(5) .track-status-icon { background-color: #2ECC71; }
+
+/* Тексты статусов */
 .track-status-name {
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111111;
+    line-height: 1.3;
+    flex: 1;
+    font-family: inherit;
 }
 
 .track-status-date {
-    color: rgba(17, 17, 17, 0.5);
+    font-size: 12px;
+    color: #999999;
+    line-height: 1.3;
+    white-space: nowrap;
+    font-family: inherit;
 }
 
+/* --- Адаптив --- */
 @media (max-width: 767px) {
     .container {
-        padding: 100px 15px 40px 15px; /* Уменьшаем отступы на мобильных */
+        padding: 100px 15px 40px 15px;
     }
 
     .track-content {
@@ -261,9 +271,9 @@
         padding: 15px;
     }
 
-    .track-status-item:not(:last-child)::after {
+    .track-status-item:not(:last-child)::before {
         left: 19px;
-        top: 40px;
-        bottom: -15px;
+        top: 42px;
+        bottom: -16px;
     }
 }
